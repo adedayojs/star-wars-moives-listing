@@ -1,14 +1,16 @@
-import { User } from '@models/User';
 import got from 'got';
 import { swapiBaseMovieUrl } from '~/helpers/constant';
+import { IMovie, SwapiResponse } from '~/models/movie';
 const MovieController = {
   /**
    *
    * Display All Movies
    */
-  showAll() {
+  showAll(): Promise<SwapiResponse<Array<IMovie>>> {
     // Make APi Call to external api
-    return got(swapiBaseMovieUrl, { responseType: 'json' }).then((res) => res.body);
+    return got<Promise<SwapiResponse<Array<IMovie>>>>(swapiBaseMovieUrl, {
+      responseType: 'json',
+    }).then((res) => res.body);
   },
   show(id: number) {
     // Make APi Call to external api
