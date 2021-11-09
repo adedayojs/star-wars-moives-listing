@@ -1,15 +1,11 @@
 import { Router } from 'express';
-import userRouteHandler from './users';
-import sampleController from '../controllers/sample';
+import v1Router from './v1/index';
+import v2Router from './v2/index';
 
 const router = Router();
 
-router.get('/', function (_req, res, _next) {
-  const message = sampleController();
+router.use('/v1', v1Router);
 
-  res.status(200).json({ message });
-});
-
-router.use('/users', userRouteHandler);
+router.use('/v2', v2Router);
 
 export default router;

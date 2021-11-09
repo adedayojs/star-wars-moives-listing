@@ -8,7 +8,7 @@ import { graphqlHTTP } from 'express-graphql';
 import path from 'path';
 import fs from 'fs';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import connectToDatabase from './database/connect';
 
 import apiRouter from './routes/index';
 import schema from './graphql/schema';
@@ -17,7 +17,7 @@ import schema from './graphql/schema';
  *  Initialize Express Server
  */
 const app = express();
-
+connectToDatabase();
 /**
  *  Setup Request logging
  */
@@ -48,36 +48,11 @@ app.use(
     stream: process.stdout,
   }),
 );
-
 app.disable('x-powered-by');
 app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-/**
- *
- * Create Databse Connection
- *
- */
-
-createConnection({
-  type: 'mysql',
-  host: 'localhost',
-  port: 8889,
-  username: 'admin',
-  password: '',
-  database: 'starwars-comment',
-  entities: [__dirname + '/models/*.js'],
-  migrations: ['src/database/migration/**/*.ts'],
-  synchronize: true,
-  logging: ['info'],
-})
-  .then(() => {
-    // here you can start to work with your entities
-    console.log('Database Connection Successful');
-  })
-  .catch((error) => console.log(error));
 
 /* Api Routes Handler */
 app.use('/api', apiRouter);
