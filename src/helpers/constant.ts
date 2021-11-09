@@ -11,17 +11,15 @@ export type sortType = 'release_date' | 'name' | 'gender' | 'height';
 export type sortOrder = 'asc' | 'desc';
 
 export function Sorter(item: Array<{ [key: string]: any }>, sort: sortType, order: sortOrder) {
-  console.log(...arguments);
   item.sort((a, b) => {
     if (sort === 'release_date') {
       return order === 'asc'
         ? getTime(a.release_date) - getTime(b.release_date)
-        : getTime(a.release_date) - getTime(b.release_date);
+        : getTime(b.release_date) - getTime(a.release_date);
     } else {
       return order === 'asc' ? a[sort] - b[sort] : b[sort] - a[sort];
     }
   });
-  console.log('Sorted');
 }
 
 export function composeResponse(message: string, data = {}, error_code?: number) {

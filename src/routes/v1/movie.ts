@@ -31,10 +31,9 @@ router.get('/', async function (req, res, _next) {
       console.log('No sort and order');
       return res.status(200).json(composeResponse('Successful', movies));
     }
-    console.log(sort, order);
 
     // Sort based on parameters requested
-    Sorter(movies.result, sort as sortType, order as sortOrder);
+    Sorter(movies.results, sort as sortType, order as sortOrder);
 
     return res.status(200).json(composeResponse('Successful', movies));
   } catch (err) {
