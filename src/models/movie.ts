@@ -14,10 +14,3 @@ export interface IMovie {
   edited: string;
   url: string;
 }
-
-export interface SwapiResponse<T> {
-  count: number;
-  next: number;
-  previous: number;
-  results: T;
-}

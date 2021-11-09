@@ -1,6 +1,7 @@
 import express from 'express';
 
 export const swapiBaseMovieUrl = 'https://swapi.dev/api/films';
+export const swapiBaseCharacterUrl = 'https://swapi.dev/api/people';
 
 export function getTime(date: string) {
   return new Date(date).getTime();
@@ -22,6 +23,13 @@ export function Sorter(item: Array<{ [key: string]: any }>, sort: sortType, orde
   });
 }
 
+export function cmToFeet(n: number) {
+  var realFeet = (n * 0.3937) / 12;
+  var feet = Math.floor(realFeet);
+  var inches = Math.round((realFeet - feet) * 12);
+  return feet + 'feet ' + inches + 'inches;';
+}
+
 export function composeResponse(message: string, data = {}, error_code?: number) {
   return {
     success: !error_code,
@@ -30,7 +38,14 @@ export function composeResponse(message: string, data = {}, error_code?: number)
     error_code,
   };
 }
-
+export function successHandler(
+  res: express.Response,
+  statusCode: number,
+  data: any,
+  message = 'Request Successful',
+) {
+  res.status(statusCode).json(composeResponse(message, data));
+}
 export function errorHandler(
   res: express.Response,
   statusCode: number,

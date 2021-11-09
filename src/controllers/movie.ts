@@ -1,6 +1,7 @@
 import got from 'got';
 import { swapiBaseMovieUrl } from '~/helpers/constant';
-import { IMovie, SwapiResponse } from '~/models/movie';
+import { IMovie } from '~/models/movie';
+import { SwapiResponse } from '~/models/shared';
 const MovieController = {
   /**
    *
@@ -12,9 +13,11 @@ const MovieController = {
       responseType: 'json',
     }).then((res) => res.body);
   },
-  show(id: number) {
+  show(id: number): Promise<IMovie> {
     // Make APi Call to external api
-    return got(`${swapiBaseMovieUrl}/${id}`, { responseType: 'json' }).then((res) => res.body);
+    return got<Promise<IMovie>>(`${swapiBaseMovieUrl}/${id}`, {
+      responseType: 'json',
+    }).then((res) => res.body);
   },
 };
 export default MovieController;
