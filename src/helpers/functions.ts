@@ -6,11 +6,20 @@ export function getTime(date: string) {
 }
 export function Sorter(item: Array<{ [key: string]: any }>, sort: sortType, order: sortOrder) {
   item.sort((a, b) => {
+    //   WE do this because we are sorting date
     if (sort === 'release_date') {
       return order === 'asc'
         ? getTime(a.release_date) - getTime(b.release_date)
         : getTime(b.release_date) - getTime(a.release_date);
     } else {
+      // We are checking for the following reasons
+      //    in a case where this function is used for another purpose other than the intended purpose --- Sorting String data
+      //  When there is a number enclosed in strings
+      if (isNaN(Number(a[sort]))) {
+        return order === 'asc'
+          ? a[sort].localeCompare(b[sort])
+          : b[sort].localeCompare(a[sort]);
+      }
       return order === 'asc' ? a[sort] - b[sort] : b[sort] - a[sort];
     }
   });
@@ -27,9 +36,9 @@ export function filterByObject(
 }
 
 export function cmToFeet(n: number) {
-  var realFeet = (n * 0.3937) / 12;
-  var feet = Math.floor(realFeet);
-  var inches = Math.round((realFeet - feet) * 12);
+  const realFeet = (n * 0.3937) / 12;
+  const feet = Math.floor(realFeet);
+  const inches = Math.round((realFeet - feet) * 12);
   return feet + 'feet ' + inches + 'inches;';
 }
 

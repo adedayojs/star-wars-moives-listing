@@ -20,7 +20,7 @@ router.get('/:id', async function (req, res, _next) {
   const movies = await Controller.show(Number(id));
 
   // Sort based on parameters requested
-  res.status(200).json(movies);
+  successHandler(res, 200, movies);
 });
 
 router.get('/', async function (req, res, _next) {
@@ -37,7 +37,7 @@ router.get('/', async function (req, res, _next) {
     // Sort based on parameters requested
     Sorter(movies.results, sort as sortType, order as sortOrder);
 
-    return res.status(200).json(composeResponse('Successful', movies));
+    return successHandler(res, 200, movies);
   } catch (err) {
     return errorHandler(res, 500, 501, err as string);
   }
@@ -53,7 +53,7 @@ router.get('/:id/characters', async function (req, res) {
       movies.characters.map((char) => CharacterController.getByUrl(char)),
     );
 
-    // Filter if the supported criteria are present
+    // Create Filter object if the supported criteria are present
     const { query } = req;
     const filterObj: { [key: string]: any } = {};
 
@@ -66,7 +66,7 @@ router.get('/:id/characters', async function (req, res) {
       characters = filterByObject(filterObj, characters) as ICharacter[];
     }
 
-    //  Sorting If Present
+    //  Sort if Sorting is requested
     const { sort, order } = req.query;
 
     if (sort && order) {
