@@ -67,7 +67,7 @@ createConnection({
   port: 8889,
   username: 'admin',
   password: '',
-  database: 'larats',
+  database: 'starwars-comment',
   entities: [__dirname + '/models/*.js'],
   migrations: ['src/database/migration/**/*.ts'],
   synchronize: true,
