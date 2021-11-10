@@ -20,12 +20,16 @@ const router = Router();
 router.get('/:id', async function (req, res, _next) {
   // Fetch from datasource, in this case external api
   const { id } = req.params;
-  let movies = await Controller.show(Number(id));
-  movies = pruneData(movies, outputMovieData) as IMovie;
-  const comments = await CommentController.getByMovieId(Number(id));
+  try {
+    let movies = await Controller.show(Number(id));
+    movies = pruneData(movies, outputMovieData) as IMovie;
+    const comments = await CommentController.getByMovieId(Number(id));
 
-  // Sort based on parameters requested
-  successHandler(res, 200, { ...movies, commentCount: comments.length });
+    // Sort based on parameters requested
+    return successHandler(res, 200, { ...movies, commentCount: comments.length });
+  } catch (e) {
+    return errorHandler(res, 500, 501, e as string);
+  }
 });
 
 router.get('/', async function (req, res, _next) {
