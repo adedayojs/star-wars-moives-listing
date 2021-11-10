@@ -12,8 +12,8 @@ import {
   filterByObject,
   pruneData,
 } from 'src/helpers/functions';
-import { ICharacter } from 'src/models/Character';
-import { IMovie } from 'src/models/Movie';
+import { ICharacter } from '~/models/Character';
+import { IMovie } from '~/models/Movie';
 
 const router = Router();
 
