@@ -7,6 +7,7 @@
   "private": false,
   "scripts": {
     "build": "scripts/build.sh",
+    "postinstall": "yarn tsc",
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
     "test": "jest",
