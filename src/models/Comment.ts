@@ -14,7 +14,7 @@ export class Comment extends BaseEntity {
   @Column('varchar')
   commenterIpAddress: string;
 
-  @CreateDateColumn({ type: 'datetime' })
+  @CreateDateColumn()
   created_at: Date;
 }
 
