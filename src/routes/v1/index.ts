@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import userRouteHandler from './users';
 import movieRouteHandler from './movie';
-import sampleController from '../../controllers/sample';
+import sampleController from '@controllers/sample';
 
 const router = Router();
 
