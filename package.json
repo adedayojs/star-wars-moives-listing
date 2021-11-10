@@ -7,6 +7,7 @@
   "private": false,
   "scripts": {
     "build": "scripts/build.sh",
+    "postinstall": "yarn tsc",
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
     "test": "jest",
@@ -20,6 +21,7 @@
     "dotenv": "8.2.0",
     "express": "4.17.1",
     "express-graphql": "0.11.0",
+    "got": "11.8.2",
     "graphql": "15.3.0",
     "http-errors": "1.8.0",
     "morgan": "1.10.0",
