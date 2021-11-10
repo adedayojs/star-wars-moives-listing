@@ -6,3 +6,5 @@ export type sortType = 'release_date' | 'name' | 'gender' | 'height';
 export type sortOrder = 'asc' | 'desc';
 
 export const supportedFilter = new Set(['gender']);
+
+export const outputMovieData = ['title', 'opening_crawl', 'commentCount', 'release_date'];

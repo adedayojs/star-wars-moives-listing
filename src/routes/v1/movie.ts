@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Controller from '@controllers/movie';
 import CharacterController from '@controllers/character';
 import CommentController from '@controllers/comment';
-import { sortOrder, sortType, supportedFilter } from '~/helpers/constant';
+import { outputMovieData, sortOrder, sortType, supportedFilter } from '~/helpers/constant';
 import {
   composeResponse,
   Sorter,
@@ -10,15 +10,18 @@ import {
   cmToFeet,
   successHandler,
   filterByObject,
+  pruneData,
 } from '~/helpers/functions';
 import { ICharacter } from '~/models/Character';
+import { IMovie } from '~/models/Movie';
 
 const router = Router();
 
 router.get('/:id', async function (req, res, _next) {
   // Fetch from datasource, in this case external api
   const { id } = req.params;
-  const movies = await Controller.show(Number(id));
+  let movies = await Controller.show(Number(id));
+  movies = pruneData(movies, outputMovieData) as IMovie;
   const comments = await CommentController.getByMovieId(Number(id));
 
   // Sort based on parameters requested
@@ -28,7 +31,10 @@ router.get('/:id', async function (req, res, _next) {
 router.get('/', async function (req, res, _next) {
   try {
     // Fetch from datasource, in this case external api
-    const movies = await Controller.showAll();
+    let movies = await Controller.showAll();
+
+    // Prune Data to specification
+    movies.results = movies.results.map((res) => pruneData(res, outputMovieData)) as IMovie[];
 
     const { sort, order } = req.query;
 
