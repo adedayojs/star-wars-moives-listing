@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "scripts/build.sh",
+    "build": "tsc",
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
     "test": "jest",
