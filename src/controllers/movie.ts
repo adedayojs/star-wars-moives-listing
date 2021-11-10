@@ -1,6 +1,6 @@
 import got from 'got';
 import { swapiBaseMovieUrl } from '~/helpers/constant';
-import { IMovie } from '~/models/movie';
+import { IMovie } from '~/models/Movie';
 import { SwapiResponse } from '~/models/shared';
 const MovieController = {
   /**

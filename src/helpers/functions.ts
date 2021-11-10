@@ -66,3 +66,14 @@ export function errorHandler(
 ) {
   return res.status(statusCode).json(composeResponse(msg, {}, errorCode));
 }
+
+export function pruneData(sourceObj: { [key: string]: any }, filters: string[]) {
+  const output: { [key: string]: any } = {};
+  console.log(sourceObj);
+  for (let key of filters) {
+    console.log(sourceObj[key]);
+    output[key] = sourceObj[key];
+  }
+
+  return output;
+}
