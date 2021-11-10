@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Controller from 'src/controllers/movie';
 import CharacterController from 'src/controllers/character';
 import CommentController from 'src/controllers/comment';
-import { outputMovieData, sortOrder, sortType, supportedFilter } from '~/helpers/constant';
+import { outputMovieData, sortOrder, sortType, supportedFilter } from 'src/helpers/constant';
 import {
   composeResponse,
   Sorter,
@@ -11,9 +11,9 @@ import {
   successHandler,
   filterByObject,
   pruneData,
-} from '~/helpers/functions';
-import { ICharacter } from '~/models/Character';
-import { IMovie } from '~/models/Movie';
+} from 'src/helpers/functions';
+import { ICharacter } from 'src/models/Character';
+import { IMovie } from 'src/models/Movie';
 
 const router = Router();
 
