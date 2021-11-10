@@ -1,4 +1,4 @@
-import { Comment } from 'src/models/comment';
+import { Comment } from '@models/Comment';
 const CommentController = {
   /**
    *

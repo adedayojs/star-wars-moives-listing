@@ -1,6 +1,6 @@
 import got from 'got';
 import { swapiBaseCharacterUrl } from 'src/helpers/constant';
-import { ICharacter } from '~/models/Character';
+import { ICharacter } from '@models/Character';
 
 const MovieController = {
   /**
