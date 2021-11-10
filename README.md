@@ -80,6 +80,35 @@ The REST API to the example app is described below.
 | sort  | release_date |
 | order | asc, desc    |
 
+## Get Single Movie
+
+### Request
+
+`GET /api/v1/movie/:id`
+
+    curl -i -H 'Accept: application/json' http://localhost:3000/api/v1/movie/1
+
+### Response
+
+    HTTP/1.1 200 OK
+    Date: Thu, 24 Feb 2011 12:36:30 GMT
+    Status: 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 2
+
+    {
+        success:true,
+        message:successful,
+        data:
+                {
+                    title:sting,
+                    opening_crawl:string,
+                    release_date:string,
+                    commentCount:number
+                }
+    }
+
 ## Get List Of Character For a movie
 
 ### Request
@@ -223,16 +252,3 @@ The REST API to the example app is described below.
     ]
 
 }
-
-### You Can Sort by passing the following parameter as query strings
-
-| Key   | Value                |
-| ----- | -------------------- |
-| sort  | name, gender, height |
-| order | asc, desc            |
-
-### You Can Also Filter by passing the following parameter as query strings
-
-| Key    | Value                              |
-| ------ | ---------------------------------- |
-| gender | male, female, and any other gender |
