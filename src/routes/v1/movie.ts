@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import Controller from '@controllers/movie';
-import CharacterController from '@controllers/character';
-import CommentController from '@controllers/comment';
+import Controller from 'src/controllers/movie';
+import CharacterController from 'src/controllers/character';
+import CommentController from 'src/controllers/comment';
 import { outputMovieData, sortOrder, sortType, supportedFilter } from '~/helpers/constant';
 import {
   composeResponse,

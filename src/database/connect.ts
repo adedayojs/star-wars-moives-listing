@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
-import { User } from '~/models/User';
-import { Comment } from '~/models/comment';
+import { User } from '../models/User';
+import { Comment } from '../models/comment';
 /**
  *
  * Create Database Connection
