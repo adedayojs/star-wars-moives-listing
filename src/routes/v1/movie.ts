@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Controller from '@controllers/movie';
 import CharacterController from '@controllers/character';
+import CommentController from '@controllers/comment';
 import { sortOrder, sortType, supportedFilter } from '~/helpers/constant';
 import {
   composeResponse,
@@ -10,7 +11,7 @@ import {
   successHandler,
   filterByObject,
 } from '~/helpers/functions';
-import { ICharacter } from '~/models/character';
+import { ICharacter } from '~/models/Character';
 
 const router = Router();
 
@@ -98,6 +99,21 @@ router.get('/:id/characters', async function (req, res) {
   } catch (e) {
     // We are passing the error as any because it could be an error that's not a string
     return errorHandler(res, 500, 501, e as any);
+  }
+});
+
+router.post('/:id/comment', async function (req, res) {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const comment = await CommentController.create({
+      ...body,
+      movieId: id,
+      commenterIpAddress: req.ip,
+    });
+    return successHandler(res, 200, comment);
+  } catch (e) {
+    return errorHandler(res, 500, 501, e as string);
   }
 });
 
