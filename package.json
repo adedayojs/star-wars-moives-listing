@@ -24,10 +24,10 @@
     "graphql": "15.3.0",
     "http-errors": "1.8.0",
     "morgan": "1.10.0",
-    "mysql": "^2.14.1",
+    "mysql": "2.18.1",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.2.25",
     "tsconfig-paths": "3.9.0",
+    "typeorm": "0.2.39",
     "typescript": "3.9.7"
   },
   "devDependencies": {
