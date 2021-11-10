@@ -14,7 +14,7 @@ export class Comment extends BaseEntity {
   @Column('varchar')
   commenterIpAddress: string;
 
-  @CreateDateColumn({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP(6)' })
+  @CreateDateColumn({ type: 'datetime' })
   created_at: Date;
 }
 
