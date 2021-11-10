@@ -116,6 +116,10 @@ router.get('/:id/characters', async function (req, res) {
 router.post('/:id/comment', async function (req, res) {
   const { id } = req.params;
   const { body } = req;
+  if (!body.comment) {
+    // Simple Validation
+    return errorHandler(res, 400, 400, 'Please provide comment');
+  }
   try {
     const comment = await CommentController.create({
       ...body,
