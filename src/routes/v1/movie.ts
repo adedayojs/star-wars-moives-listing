@@ -19,9 +19,10 @@ router.get('/:id', async function (req, res, _next) {
   // Fetch from datasource, in this case external api
   const { id } = req.params;
   const movies = await Controller.show(Number(id));
+  const comments = await CommentController.getByMovieId(Number(id));
 
   // Sort based on parameters requested
-  successHandler(res, 200, movies);
+  successHandler(res, 200, { ...movies, commentCount: comments.length });
 });
 
 router.get('/', async function (req, res, _next) {

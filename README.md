@@ -65,8 +65,9 @@ The REST API to the example app is described below.
             result:[
                 {
                     title:sting,
-                    crawl:string,
+                    opening_crawl:string,
                     release_date:string,
+                    commentCount:number
                 }
             ]
         }
