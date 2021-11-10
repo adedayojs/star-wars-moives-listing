@@ -10,6 +10,14 @@ const CommentController = {
 
   /**
    *
+   * Display Comments by movie Id
+   */
+  getByMovieId(movieId: number, options?: any) {
+    return Comment.find({ where: { movieId }, order: { created_at: 'DESC' }, ...options });
+  },
+
+  /**
+   *
    * Create a new Comment
    */
   create(data: any): Promise<Comment> {

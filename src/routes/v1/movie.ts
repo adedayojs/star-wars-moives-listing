@@ -117,4 +117,17 @@ router.post('/:id/comment', async function (req, res) {
   }
 });
 
+router.get('/:id/comment', async function (req, res) {
+  try {
+    // Make Network Requests
+    const { id } = req.params;
+    const comments = await CommentController.getByMovieId(Number(id));
+
+    return successHandler(res, 200, comments);
+  } catch (e) {
+    // We are passing the error as any because it could be an error that's not a string
+    return errorHandler(res, 500, 501, e as any);
+  }
+});
+
 export default router;
